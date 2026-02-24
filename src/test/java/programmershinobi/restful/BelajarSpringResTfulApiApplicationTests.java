@@ -1,4 +1,4 @@
-package programmershinobi.belajar_restful;
+package programmershinobi.restful;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

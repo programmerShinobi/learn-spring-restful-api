@@ -1,4 +1,4 @@
-package programmershinobi.belajar_restful;
+package programmershinobi.restful;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package programmershinobi.belajar_restful.entity;
+package programmershinobi.restful.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
