@@ -7,9 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import programmershinobi.restful.entity.User;
 import programmershinobi.restful.model.RegisterUserRequest;
+import programmershinobi.restful.model.UpdateUserRequest;
 import programmershinobi.restful.model.UserResponse;
 import programmershinobi.restful.repository.UserRepository;
 import programmershinobi.restful.security.BCrypt;
+
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -37,6 +40,26 @@ public class UserService {
     }
 
     public UserResponse get(User user) {
+        return UserResponse.builder()
+                .username(user.getUsername())
+                .name(user.getName())
+                .build();
+    }
+
+    @Transactional
+    public UserResponse update(User user, UpdateUserRequest request) {
+        validationService.validate(request);
+
+        if (Objects.nonNull(request.getName())) {
+            user.setName(request.getName());
+        }
+
+        if (Objects.nonNull(request.getPassword())) {
+            user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
+        }
+
+        userRepository.save(user);
+
         return UserResponse.builder()
                 .username(user.getUsername())
                 .name(user.getName())
