@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import programmershinobi.restful.entity.User;
 import programmershinobi.restful.model.RegisterUserRequest;
+import programmershinobi.restful.model.UserResponse;
 import programmershinobi.restful.repository.UserRepository;
 import programmershinobi.restful.security.BCrypt;
 
@@ -33,6 +34,13 @@ public class UserService {
         user.setName(request.getName());
 
         userRepository.save(user);
+    }
+
+    public UserResponse get(User user) {
+        return UserResponse.builder()
+                .username(user.getUsername())
+                .name(user.getName())
+                .build();
     }
 
 }
